@@ -1,3 +1,6 @@
+#Resumen
+Para los html he usado bootstrap, he cogido el código de su web. He intentado crear un componente por cada apartado de nuestro proyecto (Aunque he usado el word que creamos al principio y no sé si están todos los campos bien). En el código he usado ngModel para los inputs (No sé muy bien cual tengo que usar para que la API coja los valores para verificarlos). Hay dos campos con pestañas, que lo suyo sería que se pudiese escoger uno. Todo esto ha sido a prueba o error, todo lo que veáis mal o si veis que se puede hacer de otro modo comentarmelo sin problema. La app es bastante fea, pero yo creo que eso lo dejamos ya cuando veamos que funciona todo.
+
 # CreditoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
