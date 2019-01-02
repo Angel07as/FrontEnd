@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   email: string;
   password: string;
   departament: string;
+  message: string;
+  error: boolean;
 
   constructor(private apiService: ApiService,
               private authService: AuthService) { }
@@ -33,8 +35,14 @@ export class RegisterComponent implements OnInit {
       (response: any) => {
         console.log(response);
         this.authService.setToken(response.token);
+        this.error = false;
+        this.message = response.message;
       },
       (err) => {
+        if (err.error.message){
+          this.error = true;
+          this.message = err.error.message;
+         }
         console.log('Error al registrar',err);
       });
   }
