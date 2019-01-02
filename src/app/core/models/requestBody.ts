@@ -4,5 +4,6 @@ export interface RequestBody {
     name?: string, 
     surname?: string, 
     phone?: Number, 
-    departament?: string
+    departament?: string,
+    projects?: string[]
 }

@@ -1,4 +1,20 @@
 .section-login {
-    padding-top: 7rem;
-    background-color: #f7f7f7;
+    padding: 20rem 0;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8));
+    background-size: cover;
+    clip-path: polygon(0 21vh, 100% 1vh, 100% 100%, 0 100%);
+    margin-top: -13rem;
+
+    /* & > * {
+        transform: skewY(7deg);
+    } */
+}
+
+.section-form {
+    background-color: $color-grey-light-1;
+    padding: 18rem 0;
+    margin-top: -15rem;
 }

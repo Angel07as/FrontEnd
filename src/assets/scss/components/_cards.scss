@@ -6,8 +6,26 @@
         float: right;
     }
 
+    &--form {
+        max-width: 80%;
+        margin: 0 auto;
+        width: 80%;
+        float: right;
+    }
+
     &__header {
         padding-left: 29%;
+    }
+
+    &__table {
+        border-collapse:separate; 
+        border-spacing: 2rem 1rem;
+    }
+
+    &__row {
+        &:not(:first-child) {
+            margin-top: $gutter-vertical;
+        }
     }
 
     &__text {

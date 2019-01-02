@@ -1,9 +1,24 @@
-<main>
-    <section class="section-login">
-        
-        <div #formReservation *ngIf="isLogged()" class="row">
-            <h1>Esta logueado!</h1>
+<header class="header">
+        <div class="header__text-box">
+            <h1 class="heading-primary">
+                <span class="heading-primary--main">reserva de crédito</span>
+            </h1>   
         </div>
+</header>
+
+<main>
+    <section #formReservation *ngIf="isLogged()" class="section-form">
+            <div class="u-center-text u-margin-bottom-big">
+                    <h2 class="heading-secondary">
+                        Realizar reserva
+                    </h2>
+                </div>
+            <div class="row">
+                <app-formulario class="app-formulario"></app-formulario>
+            </div>
+    </section>    
+    
+    <section class="section-login">
         
         <div #formLogin class="row">
             <div class="col-1-of-2"><app-login class="login"></app-login></div>

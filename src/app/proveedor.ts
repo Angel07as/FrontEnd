@@ -1,4 +1,4 @@
-export class Proveedor {
+export interface Proveedor {
     nombre: string;
     CIF: number;
 }

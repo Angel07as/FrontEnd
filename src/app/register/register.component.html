@@ -47,13 +47,25 @@
               </mat-form-field>
             </td>
           </tr>
+
+          <tr class="card__row">
+              <td>Seleccione Proyecto</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <select id="selectSignUp" class="form-control">
+                      <option>Default select</option>
+                    </select>
+                  </td>
+            </tr>
+          
           <tr *ngIf="message">
             <p *ngIf="!error" class="card__text--ok paragraph">{{message}}</p>
             <p *ngIf="error" class="card__text--error paragraph">{{message}}</p>
           </tr>
         </table>
       </form>
-      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button (click)="signUp()" color="primary">Sign Up</button>

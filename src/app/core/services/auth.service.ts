@@ -13,6 +13,10 @@ export class AuthService {
     localStorage.setItem(TOKEN, token);
   }
 
+  getToken(): string {
+    return localStorage.getItem(TOKEN);
+  }
+
   isLogged() {
     return localStorage.getItem(TOKEN) != null;
   }

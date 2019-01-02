@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
                      this.authService.setToken(response.token);
                      this.error = false;
                      this.message = response.message;
+                     window.location.reload();
                    },
                    (err) => {
                      if (err.error.message){
