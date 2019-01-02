@@ -1,4 +1,4 @@
-<form>
+<!-- <form>
   <form>
     <app-datos-persona></app-datos-persona>
     <app-datos-proveedor></app-datos-proveedor>
@@ -10,4 +10,102 @@
     </div>
     
     
-  </form>
+  </form> -->
+  <div class="col-1-of-2">
+  <mat-card class="card card--form">
+      <mat-card-header class="card__header">
+        <mat-card-title>Datos de reserva</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="example-form">
+            <table class="card__table" cellspacing="0">
+
+                <tr class="card__row">
+                    <td>Datos del Proveedor</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="CIF del proveedor" [(ngModel)]="cifProvider" name="cifProvider" required>
+                    </mat-form-field>
+                  </td>
+                </tr>
+
+                <tr class="card__row">
+                  <td>Seleccione Proyecto</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <select id="selectProject" class="form-control">
+                          <option>Default select</option>
+                        </select>
+                      </td>
+                </tr>
+
+                <tr class="card__row">
+                    <td>Concepto de gasto</td>
+                </tr>
+
+                <tr >
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Nombre del concepto" [(ngModel)]="nameConcept" name="nameConcept" required>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <select id="selectTypeConcept" class="form-control">
+                      <option value="product">product</option>
+                      <option value="service">service</option>
+                    </select>
+                  </td>
+                </tr>
+
+                <tr class="card__row">
+                    <td>Preesupuesto</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input matInput [(ngModel)]="budget" name="budget" type="number" value="0" required>
+                    </mat-form-field>
+                  </td>
+                </tr>
+
+                <tr *ngIf="message">
+                    <p *ngIf="!error" class="card__text--ok paragraph">{{message}}</p>
+                    <p *ngIf="error" class="card__text--error paragraph">{{message}}</p>
+                </tr>
+
+            </table>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="submit()" color="primary">Submit</button>
+      </mat-card-actions>
+  </mat-card>
+
+  </div>
+  <div class="col-1-of-2">
+      <table mat-table [dataSource]="dataSource" class="width-table mat-elevation-z8">
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="invoice_code">
+            <th mat-header-cell *matHeaderCellDef> Código de Factura </th>
+            <td mat-cell *matCellDef="let element"> {{element.invoice_code}} </td>
+          </ng-container>
+        
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef> Confirmar </th>
+            <td mat-cell *matCellDef="let element"><button mat-raised-button (click)="confirm(element._id)" color="primary">Confirm</button></td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+        </table>
+        <mat-paginator class="width-table" [pageSizeOptions]="[9, 5]" showFirstLastButtons></mat-paginator>
+  </div>

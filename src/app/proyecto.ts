@@ -1,3 +1,3 @@
-export class Proyecto {
+export interface Proyecto {
     name: string;
 }
