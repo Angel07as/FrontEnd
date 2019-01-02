@@ -1,0 +1,23 @@
+.card {
+    text-align: center;
+    width: 60%;
+
+    &--login {
+        float: right;
+    }
+
+    &__header {
+        padding-left: 29%;
+    }
+
+    &__text {
+        
+        &--ok{
+            color: $color-green;
+        }
+
+        &--error {
+            color: $color-red;
+        }
+    }
+}

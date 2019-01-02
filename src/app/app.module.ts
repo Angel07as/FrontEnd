@@ -9,6 +9,9 @@ import { DatosProveedorComponent } from './datos-proveedor/datos-proveedor.compo
 import { ConceptoGastoComponent } from './concepto-gasto/concepto-gasto.component';
 import { AdjuntarPdfComponent } from './adjuntar-pdf/adjuntar-pdf.component';
 import { FormularioComponent } from './formulario/formulario.component';
+import { LoginComponent } from './login/login.component';
+import { CoreModule } from './core/core.module';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import { FormularioComponent } from './formulario/formulario.component';
     DatosProveedorComponent,
     ConceptoGastoComponent,
     AdjuntarPdfComponent,
-    FormularioComponent
+    FormularioComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
