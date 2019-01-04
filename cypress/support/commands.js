@@ -10,9 +10,32 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
+   Cypress.Commands.add("login", (user) => {
+       // Escribir el email del usuario
+  cy.get('#mat-input-0').type(user.email);
+
+  // Escribir una contraseña incorrecta
+  cy.get('#mat-input-1').type(user.password);
+
+  // Click sobre el botón **Submit**
+  cy.get('.login > .card > .mat-card-actions > .mat-raised-button').click();
+
+    })
 //
-//
+  Cypress.Commands.add("reserva", (proveedor) => {
+    // Escribir el cif del proveedor
+    cy.get('#mat-input-8').type(proveedor.cif);
+
+    //Selección concepto de gasto
+    cy.get('#mat-input-9').type(proveedor.concepto);
+
+    //Escriba presupuesto
+    cy.get('#mat-input-10').type(proveedor.presupuesto);
+    
+    // Click sobre el botón **Submit**
+    cy.get('.app-formulario > :nth-child(1) > .card > .mat-card-actions > .mat-raised-button').click();
+
+   })
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
 //

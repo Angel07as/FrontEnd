@@ -10,7 +10,7 @@ import { ReservationBody } from '../models/reservationBody';
   providedIn: 'root'
 })
 
-export class ApiServiceService {
+export class ApiService {
 
   constructor(private http: HttpClient) { }
 
