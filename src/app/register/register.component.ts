@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../core/services/apiservice.service';
 import { AuthService } from '../core/services/auth.service';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -16,9 +17,58 @@ export class RegisterComponent implements OnInit {
   departament: string;
   message: string;
   error: boolean;
+  registerForm: FormGroup;
+  account_validation_messages = {
+    'name': [
+      { type: 'required', message: 'Nombre requerido' },
+      { type: 'pattern', message: 'Sólo puede contener letras' }
+    ],
+    'surname': [
+      { type: 'required', message: 'Apellidos requeridos' },
+      { type: 'pattern', message: 'Sólo puede contener letras' }
+    ],
+    'email': [
+      { type: 'required', message: 'Email requerido' },
+      { type: 'pattern', message: 'Formato erróneo' }
+    ],
+    'password': [
+      { type: 'required', message: 'Contraseña requerida' }
+    ],
+    'phone': [
+      { type: 'pattern', message: 'Sólo puede contener números' },
+      { type: 'minlength', message: 'Mínimo de 9 números' }
+    ],
+    'departament': [
+      { type: 'pattern', message: 'Sólo puede contener letras' }
+    ]
+  }
 
   constructor(private apiService: ApiService,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+    this.registerForm = new FormGroup({
+      name: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z]+')
+      ])),
+      surname: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z]+')
+      ])),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+      ])),
+      password: new FormControl('',
+      Validators.required),
+      phone: new FormControl(null, Validators.compose([
+        Validators.minLength(9),
+        Validators.pattern('[0-9]+')
+      ])),
+      departament: new FormControl('', Validators.compose([
+        Validators.pattern('[a-zA-Z]+')
+      ]))
+    });
+  }
 
   ngOnInit() {
     if (this.authService.isLogged) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../core/services/apiservice.service';
 import { AuthService } from '../core/services/auth.service';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,28 @@ export class LoginComponent implements OnInit {
   password: string;
   message: string;
   error: boolean;
+  loginForm: FormGroup;
+  account_validation_messages = {
+    'email': [
+      { type: 'required', message: 'Email requerido' },
+      { type: 'pattern', message: 'Formato erróneo' }
+    ],
+    'password': [
+      { type: 'required', message: 'Contraseña requerida' }
+    ]
+  }
 
   constructor(private apiService: ApiService,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
+      ])),
+      password: new FormControl('',
+      Validators.required)
+    });
+  }
 
   ngOnInit() {
   }

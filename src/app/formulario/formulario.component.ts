@@ -3,6 +3,7 @@ import { ApiService } from '../core/services/apiservice.service';
 import { AuthService } from '../core/services/auth.service';
 import { InvoiceCodeModel } from '../core/models/invoiceCodeModel';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario',
@@ -18,11 +19,45 @@ export class FormularioComponent implements OnInit {
   error: boolean;
   dataSource;
   displayedColumns: string[] = ['invoice_code', 'button'];
+  reserverForm: FormGroup;
+  account_validation_messages = {
+    'cif': [
+      { type: 'required', message: 'CIF requerido' },
+      { type: 'minlength', message: 'CIF debe tener 9 caracteres' },
+      { type: 'maxlength', message: 'CIF debe tener 9 caracteres' },
+      { type: 'pattern', message: 'CIF debe contener número y letras' }
+    ],
+    'concept': [
+      { type: 'required', message: 'Nombre de concepto requerido' },
+      { type: 'pattern', message: 'El nombre de concepto sólo puede conteneres letras' }
+    ],
+    'budget': [
+      { type: 'required', message: 'Presupuesto requerido' },
+      { type: 'pattern', message: 'El campo sólo puede contener números' }
+    ]
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private apiService: ApiService,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+    this.reserverForm = new FormGroup({
+      cif: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.maxLength(9),
+        Validators.minLength(9),
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
+      ])),
+      concept: new FormControl('',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z]+')])),
+      budget: new FormControl(null,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('[0-9]+')]))
+    });
+  }
 
   ngOnInit() {
     if (this.authService.isLogged) {
