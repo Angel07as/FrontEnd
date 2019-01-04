@@ -9,7 +9,8 @@ import { ReservationBody } from '../models/reservationBody';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+
+export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
 
