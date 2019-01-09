@@ -17,7 +17,8 @@
         <mat-card-title>Datos de reserva</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <form class="example-form">
+
+        <form class="example-form" [formGroup]="reserverForm">
             <table class="card__table" cellspacing="0">
 
                 <tr class="card__row">
@@ -27,7 +28,13 @@
                 <tr>
                   <td>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="CIF del proveedor" [(ngModel)]="cifProvider" name="cifProvider" required>
+                      <input matInput placeholder="CIF del proveedor" [(ngModel)]="cifProvider" name="cifProvider"
+                      type="text" formControlName="cif" required>
+
+                      <mat-error *ngFor="let validation of account_validation_messages.cif">
+                          <mat-error class="error-message" *ngIf="reserverForm.get('cif').hasError(validation.type) && (reserverForm.get('cif').dirty || reserverForm.get('cif').touched)">{{validation.message}}
+                          </mat-error>
+                      </mat-error>
                     </mat-form-field>
                   </td>
                 </tr>
@@ -51,7 +58,12 @@
                 <tr >
                   <td>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Nombre del concepto" [(ngModel)]="nameConcept" name="nameConcept" required>
+                      <input matInput formControlName="concept" placeholder="Nombre del concepto" [(ngModel)]="nameConcept" name="nameConcept" required>
+                      
+                      <mat-error *ngFor="let validation of account_validation_messages.concept">
+                          <mat-error class="error-message" *ngIf="reserverForm.get('concept').hasError(validation.type) && (reserverForm.get('concept').dirty || reserverForm.get('concept').touched)">{{validation.message}}
+                          </mat-error>
+                      </mat-error>
                     </mat-form-field>
                   </td>
                   <td>
@@ -69,7 +81,12 @@
                 <tr>
                   <td>
                     <mat-form-field class="example-full-width">
-                      <input matInput [(ngModel)]="budget" name="budget" type="number" value="0" required>
+                      <input matInput formControlName="budget" [(ngModel)]="budget" name="budget" type="number" value="0" required>
+                    
+                      <mat-error *ngFor="let validation of account_validation_messages.budget">
+                          <mat-error class="error-message" *ngIf="reserverForm.get('budget').hasError(validation.type) && (reserverForm.get('budget').dirty || reserverForm.get('budget').touched)">{{validation.message}}
+                          </mat-error>
+                      </mat-error>
                     </mat-form-field>
                   </td>
                 </tr>

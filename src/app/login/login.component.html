@@ -3,19 +3,30 @@
     <mat-card-title>Sign In</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="example-form">
+    <form class="example-form" [formGroup]="loginForm">
       <table class="example-full-width" cellspacing="0">
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email" [(ngModel)]="email" type="email" name="email" required>
+              <input matInput formControlName="email" placeholder="Email" [(ngModel)]="email" type="email" name="email" required>
+            
+              <mat-error *ngFor="let validation of account_validation_messages.email">
+                  <mat-error class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">{{validation.message}}
+                  </mat-error>
+              </mat-error>
             </mat-form-field>
           </td>
         </tr>
         <tr>
-        <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-        </mat-form-field></td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="password" placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+        
+            <mat-error *ngFor="let validation of account_validation_messages.password">
+                <mat-error class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">{{validation.message}}
+                </mat-error>
+            </mat-error>
+          </mat-form-field></td>
       </tr>
       <tr *ngIf="message">
         <p *ngIf="!error" class="card__text--ok paragraph">{{message}}</p>

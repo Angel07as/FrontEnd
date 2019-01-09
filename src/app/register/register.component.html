@@ -3,47 +3,77 @@
       <mat-card-title>Sign Up</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="example-form">
+      <form class="example-form" [formGroup]="registerForm">
         <table class="example-full-width" cellspacing="0">
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-              <input matInput placeholder="Name" [(ngModel)]="name" name="name">
+                <input matInput formControlName="name" placeholder="Name" [(ngModel)]="name" name="name">
+              
+                <mat-error *ngFor="let validation of account_validation_messages.name">
+                    <mat-error class="error-message" *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">{{validation.message}}
+                    </mat-error>
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Surname" [(ngModel)]="surname" name="surname">
+                <input matInput formControlName="surname" placeholder="Surname" [(ngModel)]="surname" name="surname">
+              
+                <mat-error *ngFor="let validation of account_validation_messages.surname">
+                    <mat-error class="error-message" *ngIf="registerForm.get('surname').hasError(validation.type) && (registerForm.get('surname').dirty || registerForm.get('surname').touched)">{{validation.message}}
+                    </mat-error>
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
+                <input matInput formControlName="email" type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
+              
+                <mat-error *ngFor="let validation of account_validation_messages.email">
+                    <mat-error class="error-message" *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">{{validation.message}}
+                    </mat-error>
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput type="password" placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+                <input matInput formControlName="password" type="password" placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+              
+                <mat-error *ngFor="let validation of account_validation_messages.password">
+                    <mat-error class="error-message" *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">{{validation.message}}
+                    </mat-error>
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Phone" [(ngModel)]="phone" name="phone">
+                <input matInput formControlName="phone" placeholder="Phone" [(ngModel)]="phone" name="phone">
+              
+                <mat-error *ngFor="let validation of account_validation_messages.phone">
+                    <mat-error class="error-message" *ngIf="registerForm.get('phone').hasError(validation.type) && (registerForm.get('phone').dirty || registerForm.get('phone').touched)">{{validation.message}}
+                    </mat-error>
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Departament" [(ngModel)]="departament" name="departament">
+                <input matInput formControlName="departament" placeholder="Departament" [(ngModel)]="departament" name="departament">
+              
+                <mat-error *ngFor="let validation of account_validation_messages.departament">
+                    <mat-error class="error-message" *ngIf="registerForm.get('departament').hasError(validation.type) && (registerForm.get('departament').dirty || registerForm.get('departament').touched)">{{validation.message}}
+                    </mat-error>
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
